@@ -1,15 +1,10 @@
 'use client'
 
-import { Chatbot } from '@/models/Chatbot'
-import API from '@/services/api'
+import useChatbots from '@/services/api/hooks/useChatbots'
 import React from 'react'
 
 export default function Home() {
-  const [chatbots, setChatbots] = React.useState<Chatbot[]>([])
-
-  React.useEffect(() => {
-    API.chatbot.getAll().then(setChatbots)
-  }, [])
+  const [chatbots] = useChatbots()
 
   return <main>{JSON.stringify(chatbots)}</main>
 }
