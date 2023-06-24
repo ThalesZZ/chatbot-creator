@@ -1,5 +1,11 @@
 import React from 'react'
 import './globals.css'
+import { Source_Code_Pro } from 'next/font/google'
+
+const sourceCodePro = Source_Code_Pro({
+  subsets: ['latin'],
+  weight: ['500', '700'],
+})
 
 export default function RootLayout({
   children,
@@ -7,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={sourceCodePro.className}>
       <body>{children}</body>
     </html>
   )
