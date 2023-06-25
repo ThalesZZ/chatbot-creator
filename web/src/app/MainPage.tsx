@@ -3,7 +3,7 @@ import useChatbots from '../services/api/hooks/useChatbots'
 import Sidebar from './Sidebar'
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { setChatbots } from '../services/store/reducers/chatbots'
+import { setChatbots } from '../services/store/reducers/app'
 import ChatbotProfile from './page/profile/ChatbotProfile'
 
 export default function MainPage() {

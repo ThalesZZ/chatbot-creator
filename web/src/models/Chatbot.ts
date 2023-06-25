@@ -23,6 +23,10 @@ export class Chatbot implements ChatbotProps {
     this.flows = props.flows
   }
 
+  getChatflow(id: string): Chatflow {
+    return this.flows.find((flow) => flow.id === id)
+  }
+
   static fromArrayDTO(array: ChatbotDTO[]): Chatbot[] {
     return array?.map(this.fromDTO) || []
   }

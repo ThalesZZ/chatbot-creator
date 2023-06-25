@@ -1,10 +1,12 @@
 import type { Chatbot } from '../../models/Chatbot'
+import { Chatflow } from '../../models/Chatflow'
 
-interface ChatbotsState {
+interface AppState {
   chatbots: Chatbot[]
-  selected: Chatbot
+  selectedChatbot: Chatbot
+  selectedChatflow: Chatflow
 }
 
 interface AppStore {
-  chatbots: ChatbotsState
+  chatbots: AppState
 }

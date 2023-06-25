@@ -2,12 +2,12 @@ import AddCircleIcon from '@mui/icons-material/AddCircle'
 import { Link } from '@mui/material'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
-import type { AppStore, ChatbotsState } from '../services/store/states'
-import { selectChatbot } from '../services/store/reducers/chatbots'
+import type { AppStore, AppState } from '../services/store/states'
+import { selectChatbot } from '../services/store/reducers/app'
 
 export default function Sidebar() {
   const dispatch = useDispatch()
-  const { chatbots } = useSelector<AppStore, ChatbotsState>(
+  const { chatbots } = useSelector<AppStore, AppState>(
     (state) => state.chatbots,
   )
 
@@ -21,7 +21,7 @@ export default function Sidebar() {
           {chatbots.map((chatbot) => (
             <Item
               key={chatbot.id}
-              onClick={() => dispatch(selectChatbot(chatbot))}
+              onClick={() => dispatch(selectChatbot([chatbot]))}
             >
               {chatbot.name}
             </Item>

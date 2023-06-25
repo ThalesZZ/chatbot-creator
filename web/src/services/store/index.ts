@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import chatbotsReducer from './reducers/chatbots'
+import chatbotsReducer from './reducers/app'
 
 const store = configureStore({
   reducer: {
