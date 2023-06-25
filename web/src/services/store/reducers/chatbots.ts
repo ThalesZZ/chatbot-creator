@@ -14,11 +14,11 @@ const chatbotsSlice = createSlice({
     setChatbots: (state, action: PayloadAction<Chatbot[]>) => {
       state.chatbots = action.payload
     },
-    select: (state, action: PayloadAction<Chatbot>) => {
+    selectChatbot: (state, action: PayloadAction<Chatbot>) => {
       state.selected = action.payload
     },
   },
 })
 
-export const { setChatbots } = chatbotsSlice.actions
+export const { setChatbots, selectChatbot } = chatbotsSlice.actions
 export default chatbotsSlice.reducer

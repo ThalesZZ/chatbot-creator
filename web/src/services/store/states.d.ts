@@ -1,4 +1,4 @@
-import { Chatbot } from '../../models/Chatbot'
+import type { Chatbot } from '../../models/Chatbot'
 
 interface ChatbotsState {
   chatbots: Chatbot[]
