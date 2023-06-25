@@ -1,4 +1,4 @@
-import MainPage from './page/MainPage'
+import MainPage from './MainPage'
 import './globals.css'
 
 export default function App() {

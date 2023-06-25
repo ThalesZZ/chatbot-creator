@@ -1,10 +1,12 @@
 import AddCircleIcon from '@mui/icons-material/AddCircle'
 import { Link } from '@mui/material'
 import styled from 'styled-components'
-import { useSelector } from 'react-redux'
-import type { AppStore, ChatbotsState } from '../../services/store/states'
+import { useDispatch, useSelector } from 'react-redux'
+import type { AppStore, ChatbotsState } from '../services/store/states'
+import { selectChatbot } from '../services/store/reducers/chatbots'
 
 export default function Sidebar() {
+  const dispatch = useDispatch()
   const { chatbots } = useSelector<AppStore, ChatbotsState>(
     (state) => state.chatbots,
   )
@@ -17,7 +19,12 @@ export default function Sidebar() {
         </h2>
         <Stack>
           {chatbots.map((chatbot) => (
-            <Item key={chatbot.id}>{chatbot.name}</Item>
+            <Item
+              key={chatbot.id}
+              onClick={() => dispatch(selectChatbot(chatbot))}
+            >
+              {chatbot.name}
+            </Item>
           ))}
         </Stack>
       </div>
@@ -41,7 +48,6 @@ export default function Sidebar() {
 const Container = styled.nav`
   flex-flow: column;
   justify-content: space-between;
-  background-color: var(--box);
   width: 12.5%;
   min-width: 230px;
   gap: 8px;
@@ -60,8 +66,6 @@ const Container = styled.nav`
 
   > #credits {
     padding: 8px;
-    background-color: var(--box-border);
-    border-top: 2px solid var(--bg-color);
     font-size: 14px;
   }
 `
@@ -72,9 +76,7 @@ const Stack = styled.div`
 `
 
 const Item = styled.a`
-  background-color: var(--inner-box);
   margin: 0px 8px;
   cursor: pointer;
-  color: var(--bg-color);
   padding: 4px 8px;
 `
