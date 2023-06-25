@@ -1,0 +1,31 @@
+:root {
+  --blue-sapphire: #1e5d88;
+	--light-gray: #d5d5d5;
+	--dark-slate-gray: #334d5c;
+	--shiny-shamrock: #55ad7a;
+	--charleston-green: #23292e;
+
+  --box-border: #499b98;
+	--text-color: #d5d5d5;
+	--box: #334d5c;
+	--inner-box: #55ad7a;
+	--bg-color: #23292e;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+div, nav {
+  display: flex;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow: hidden;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
