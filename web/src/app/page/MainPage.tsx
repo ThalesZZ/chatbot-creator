@@ -1,4 +1,4 @@
-import { styled } from 'styled-components'
+import styled from 'styled-components'
 import useChatbots from '../../services/api/hooks/useChatbots'
 import Sidebar from './Sidebar'
 

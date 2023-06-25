@@ -1,7 +1,7 @@
 import AddCircleIcon from '@mui/icons-material/AddCircle'
 import { Link } from '@mui/material'
 import styled from 'styled-components'
-import { Chatbot } from '../../models/Chatbot'
+import type { Chatbot } from '../../models/Chatbot'
 
 export default function Sidebar({ chatbots }: { chatbots: Chatbot[] }) {
   return (
