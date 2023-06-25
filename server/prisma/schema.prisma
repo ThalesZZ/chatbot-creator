@@ -15,4 +15,15 @@ model Chatbot {
   name      String
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
+
+  flows Chatflow[]
+}
+
+model Chatflow {
+  id         String @id @default(uuid())
+  name       String
+  configJSON String
+
+  chatbot   Chatbot @relation(fields: [chatbotId], references: [id])
+  chatbotId String
 }
