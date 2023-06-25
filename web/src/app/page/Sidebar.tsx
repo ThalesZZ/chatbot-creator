@@ -1,9 +1,14 @@
 import AddCircleIcon from '@mui/icons-material/AddCircle'
 import { Link } from '@mui/material'
 import styled from 'styled-components'
-import type { Chatbot } from '../../models/Chatbot'
+import { useSelector } from 'react-redux'
+import type { AppStore, ChatbotsState } from '../../services/store/states'
 
-export default function Sidebar({ chatbots }: { chatbots: Chatbot[] }) {
+export default function Sidebar() {
+  const { chatbots } = useSelector<AppStore, ChatbotsState>(
+    (state) => state.chatbots,
+  )
+
   return (
     <Container>
       <div>
