@@ -20,7 +20,7 @@ model Chatbot {
 model Chatflow {
   id         String   @id @default(uuid())
   name       String
-  configJSON String
+  configJSON String   @default("{}")
   createdAt  DateTime @default(now())
   updatedAt  DateTime @default(now())
 
