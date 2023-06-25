@@ -46,6 +46,7 @@ export default function Sidebar() {
 }
 
 const Container = styled.nav`
+  display: flex;
   flex-flow: column;
   justify-content: space-between;
   width: 12.5%;
@@ -71,6 +72,7 @@ const Container = styled.nav`
 `
 
 const Stack = styled.div`
+  display: flex;
   flex-flow: column;
   gap: 8px;
 `
