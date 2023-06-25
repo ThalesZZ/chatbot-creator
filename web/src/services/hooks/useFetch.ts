@@ -3,6 +3,8 @@ import useAsyncLoadingState, {
   UseAsyncLoadingState,
 } from './useAsyncLoadingState'
 import useToggle from './useToggle'
+import { useDispatch } from 'react-redux'
+import type { ActionCreatorWithOptionalPayload } from '@reduxjs/toolkit'
 
 export type ForceReloadFn = () => void
 export type LastUpdate = Date
@@ -16,7 +18,9 @@ export type UseFetch<T = any> = [
 export default function useFetch<T>(
   initialValue: T,
   fetchFn: () => Promise<T>,
+  reduxAction?: ActionCreatorWithOptionalPayload<T>,
 ): UseFetch<T> {
+  const dispatch = useDispatch()
   const [entity, setEntity] = React.useState<T>(initialValue)
   const [lastUpdate, setLastUpdate] = React.useState<Date>(null)
   const loading = useAsyncLoadingState()
@@ -26,6 +30,7 @@ export default function useFetch<T>(
     loading.start()
     fetchFn()
       .then((response) => {
+        if (reduxAction) dispatch(reduxAction(response))
         setEntity(response)
         setLastUpdate(new Date())
         loading.successfulStop()
