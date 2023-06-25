@@ -1,10 +1,6 @@
-import MainPage from './MainPage'
+import MainPage from './page/MainPage'
 import './globals.css'
 
 export default function App() {
-  return (
-    <main style={{ height: '100vh' }}>
-      <MainPage />
-    </main>
-  )
+  return <MainPage />
 }
