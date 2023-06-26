@@ -8,5 +8,5 @@ interface AppState {
 }
 
 interface AppStore {
-  chatbots: AppState
+  app: AppState
 }

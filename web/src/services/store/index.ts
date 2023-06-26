@@ -3,7 +3,7 @@ import chatbotsReducer from './reducers/app'
 
 const store = configureStore({
   reducer: {
-    chatbots: chatbotsReducer,
+    app: chatbotsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

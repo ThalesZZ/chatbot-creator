@@ -8,7 +8,7 @@ export default function DialogNodeComponent({
   return (
     <>
       <div style={{ border: '1px solid red', height: 50, width: 100 }}>
-        <label> {dialog.title}</label>
+        <label>{dialog.title}</label>
       </div>
     </>
   )

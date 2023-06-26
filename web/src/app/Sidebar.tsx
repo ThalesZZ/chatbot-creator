@@ -7,9 +7,7 @@ import { selectChatbot } from '../services/store/reducers/app'
 
 export default function Sidebar() {
   const dispatch = useDispatch()
-  const { chatbots } = useSelector<AppStore, AppState>(
-    (state) => state.chatbots,
-  )
+  const { chatbots } = useSelector<AppStore, AppState>((state) => state.app)
 
   return (
     <Container>

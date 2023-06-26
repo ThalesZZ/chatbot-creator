@@ -1,3 +1,7 @@
+import { type DialogNodeType } from '../app/page/profile/flow/DialogNodeComponent'
+import { Dialog } from './Dialog'
+import { type Node } from 'reactflow'
+
 export interface ChatflowDTO {
   id: string
   name: string
@@ -9,7 +13,7 @@ export interface ChatflowDTO {
 export interface ChatflowProps {
   id: string
   name: string
-  config: any // TODO
+  config: Dialog[]
   createdAt: Date
   updatedAt: Date
 }
@@ -17,7 +21,7 @@ export interface ChatflowProps {
 export class Chatflow implements ChatflowProps {
   readonly id: string
   readonly name: string
-  readonly config: any
+  readonly config: Dialog[]
   readonly createdAt: Date
   readonly updatedAt: Date
 
@@ -29,6 +33,14 @@ export class Chatflow implements ChatflowProps {
     this.updatedAt = props.updatedAt
   }
 
+  getGraph(): [Node<Dialog, DialogNodeType>[]] {
+    const nodes: Node<Dialog, DialogNodeType>[] = this.config.map((dialog) =>
+      dialog.toNode(),
+    )
+
+    return [nodes]
+  }
+
   static fromArrayDTO(array: ChatflowDTO[]): Chatflow[] {
     return array?.map(this.fromDTO) || []
   }
@@ -36,7 +48,7 @@ export class Chatflow implements ChatflowProps {
   static fromDTO(dto: ChatflowDTO): Chatflow {
     return new Chatflow({
       ...dto,
-      config: JSON.parse(dto.configJSON || '{}'),
+      config: Dialog.fromArrayDTO(JSON.parse(dto.configJSON || '[]')),
       createdAt: new Date(dto.createdAt),
       updatedAt: new Date(dto.updatedAt),
     })

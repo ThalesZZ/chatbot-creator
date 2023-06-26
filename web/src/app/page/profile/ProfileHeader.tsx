@@ -10,7 +10,7 @@ export default function ProfileHeader() {
   const { selectedChatbot: chatbot, selectedChatflow: chatflow } = useSelector<
     AppStore,
     AppState
-  >((state) => state.chatbots)
+  >((state) => state.app)
 
   return (
     <Container>

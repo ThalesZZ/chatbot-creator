@@ -6,18 +6,21 @@ import { ReactFlowProvider } from 'reactflow'
 import ChatflowEditor from './ChatflowEditor'
 
 export default function ChatbotProfile() {
-  const { selectedChatbot: chatbot } = useSelector<AppStore, AppState>(
-    (state) => state.chatbots,
-  )
+  const { selectedChatbot: chatbot, selectedChatflow: chatflow } = useSelector<
+    AppStore,
+    AppState
+  >((state) => state.app)
 
   if (!chatbot) return
 
   return (
     <Container>
       <ProfileHeader />
-      <ReactFlowProvider>
-        <ChatflowEditor />
-      </ReactFlowProvider>
+      {chatflow && (
+        <ReactFlowProvider>
+          <ChatflowEditor />
+        </ReactFlowProvider>
+      )}
     </Container>
   )
 }
