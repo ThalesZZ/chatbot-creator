@@ -1,4 +1,10 @@
 :root {
+  --white: #1C2432;
+  --card: #22273E;
+  --text: #FFF;
+  --highlight: #595CFF;
+  --input: #1C2432;
+  --border: #3D4253;
 }
 
 * {
@@ -12,6 +18,6 @@ html,
 body {
   max-width: 100vw;
   overflow: hidden;
-  background-color: #777;
-  color: #dedede;
+  background-color: var(--white);
+  color: var(--text);
 }

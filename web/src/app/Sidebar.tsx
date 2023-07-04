@@ -35,6 +35,7 @@ export default function Sidebar() {
 }
 
 const Container = styled.nav`
+  background-color: var(--card);
   display: flex;
   flex-flow: column;
   justify-content: space-between;

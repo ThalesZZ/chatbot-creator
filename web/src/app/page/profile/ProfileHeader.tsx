@@ -52,6 +52,8 @@ export default function ProfileHeader() {
 }
 
 const Container = styled.header`
+  background-color: var(--card);
+  border-left: 1px solid var(--border);
   width: 100%;
   padding: 1em 2em;
   display: flex;
