@@ -25,23 +25,25 @@ export default function ProfileHeader() {
             value={chatflow.id}
             onValueChange={onSelectChatflow}
           >
-            <Select.Trigger placeholder="Select the Flow">
+            <Select.Trigger className="SelectTrigger">
               <Select.Value />
               <Select.Icon />
             </Select.Trigger>
 
-            <Select.Portal>
-              <Select.Content>
-                <Select.Viewport>
-                  {chatbot.flows.map((flow) => (
-                    <Select.Item key={flow.id} value={flow.id}>
-                      <Select.ItemIndicator />
-                      <Select.ItemText>{flow.name}</Select.ItemText>
-                    </Select.Item>
-                  ))}
-                </Select.Viewport>
-              </Select.Content>
-            </Select.Portal>
+            <Select.Content className="SelectContent">
+              <Select.Viewport>
+                {chatbot.flows.map((flow) => (
+                  <Select.Item
+                    key={flow.id}
+                    value={flow.id}
+                    className="SelectItem"
+                  >
+                    <Select.ItemIndicator />
+                    <Select.ItemText>{flow.name}</Select.ItemText>
+                  </Select.Item>
+                ))}
+              </Select.Viewport>
+            </Select.Content>
           </Select.Root>
         </span>
       )}
@@ -54,4 +56,25 @@ const Container = styled.header`
   padding: 1em 2em;
   display: flex;
   gap: 20px;
+
+  .SelectTrigger {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid red;
+  }
+
+  .SelectContent {
+    margin-top: 20px;
+    background-color: #333;
+  }
+
+  .SelectItem {
+    outline: none;
+    cursor: pointer;
+
+    :hover {
+      background-color: #666;
+    }
+  }
 `
