@@ -1,19 +1,14 @@
 import * as Select from '@radix-ui/react-select'
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react'
 import styled from 'styled-components'
-import { selectChatflow } from '../../../services/store/reducers/app'
-import type { AppState, AppStore } from '../../../services/store/states'
+import AppContext from '../../../services/contexts/AppContext'
 
 export default function ProfileHeader() {
-  const dispatch = useDispatch()
-  const { selectedChatbot: chatbot, selectedChatflow: chatflow } = useSelector<
-    AppStore,
-    AppState
-  >((state) => state.app)
-
-  function onSelectChatflow(id: string) {
-    dispatch(selectChatflow(id))
-  }
+  const {
+    selectedChatbot: chatbot,
+    selectedChatflow: chatflow,
+    selectChatflow,
+  } = React.useContext(AppContext)
 
   return (
     <Container>
@@ -23,7 +18,7 @@ export default function ProfileHeader() {
           <Select.Root
             defaultValue={chatflow.id}
             value={chatflow.id}
-            onValueChange={onSelectChatflow}
+            onValueChange={(id) => selectChatflow(id)}
           >
             <Select.Trigger className="SelectTrigger">
               <Select.Value />

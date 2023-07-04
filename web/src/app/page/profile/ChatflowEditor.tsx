@@ -1,16 +1,15 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 import ReactFlow, {
   Background,
   BackgroundVariant,
   useEdgesState,
   useNodesState,
-  useReactFlow
+  useReactFlow,
 } from 'reactflow'
 import styled from 'styled-components'
 import { v4 as uuid } from 'uuid'
 import { Dialog } from '../../../models/Dialog'
-import type { AppState, AppStore } from '../../../services/store/states'
+import AppContext from '../../../services/contexts/AppContext'
 import DialogNodeComponent from './flow/DialogNodeComponent'
 
 const nodeTypes = {
@@ -18,19 +17,13 @@ const nodeTypes = {
 }
 
 export default function ChatflowEditor() {
-  const { selectedChatflow: chatflow } = useSelector<AppStore, AppState>(
-    ({ app }) => app,
-  )
+  const { selectedChatflow: chatflow } = React.useContext(AppContext)
 
   const [initialNodes] = React.useMemo(() => chatflow.getGraph(), [chatflow])
 
   const { addNodes } = useReactFlow<Dialog>()
   const [nodes, setNodes, onNodesChange] = useNodesState<Dialog>(initialNodes)
   const [edges, setEdges, onEdgesChange] = useEdgesState([])
-
-  React.useEffect(() => {
-    console.log(nodes)
-  }, [nodes])
 
   return (
     <Container>

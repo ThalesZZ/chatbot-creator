@@ -1,15 +1,13 @@
-import { useSelector } from 'react-redux'
-import type { AppStore, AppState } from '../../../services/store/states'
-import styled from 'styled-components'
-import ProfileHeader from './ProfileHeader'
+import React from 'react'
 import { ReactFlowProvider } from 'reactflow'
+import styled from 'styled-components'
+import AppContext from '../../../services/contexts/AppContext'
 import ChatflowEditor from './ChatflowEditor'
+import ProfileHeader from './ProfileHeader'
 
 export default function ChatbotProfile() {
-  const { selectedChatbot: chatbot, selectedChatflow: chatflow } = useSelector<
-    AppStore,
-    AppState
-  >((state) => state.app)
+  const { selectedChatbot: chatbot, selectedChatflow: chatflow } =
+    React.useContext(AppContext)
 
   if (!chatbot) return
 

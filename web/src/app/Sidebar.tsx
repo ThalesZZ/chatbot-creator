@@ -1,12 +1,11 @@
 import { PlusCircledIcon } from '@radix-ui/react-icons'
-import { useDispatch, useSelector } from 'react-redux'
-import styled from 'styled-components'
-import { selectChatbot } from '../services/store/reducers/app'
-import type { AppState, AppStore } from '../services/store/states'
+import React from 'react'
+import styled, { css } from 'styled-components'
+import AppContext from '../services/contexts/AppContext'
 
 export default function Sidebar() {
-  const dispatch = useDispatch()
-  const { chatbots } = useSelector<AppStore, AppState>((state) => state.app)
+  const { chatbots, selectedChatbot, selectChatbot } =
+    React.useContext(AppContext)
 
   return (
     <Container>
@@ -18,7 +17,8 @@ export default function Sidebar() {
           {chatbots.map((chatbot) => (
             <Item
               key={chatbot.id}
-              onClick={() => dispatch(selectChatbot([chatbot]))}
+              onClick={() => selectChatbot(chatbot)}
+              selected={chatbot === selectedChatbot}
             >
               {chatbot.name}
             </Item>
@@ -67,8 +67,11 @@ const Stack = styled.div`
   gap: 8px;
 `
 
-const Item = styled.a`
-  margin: 0px 8px;
-  cursor: pointer;
-  padding: 4px 8px;
+const Item = styled.a<{ selected: boolean }>`
+  ${({ selected }) => css`
+    margin: 0px 8px;
+    cursor: pointer;
+    padding: 4px 8px;
+    background-color: ${selected ? 'var(--highlight)' : 'transparent'};
+  `}
 `
