@@ -1,9 +1,8 @@
-import AddCircleIcon from '@mui/icons-material/AddCircle'
-import { Link } from '@mui/material'
-import styled from 'styled-components'
+import { PlusCircledIcon } from '@radix-ui/react-icons'
 import { useDispatch, useSelector } from 'react-redux'
-import type { AppStore, AppState } from '../services/store/states'
+import styled from 'styled-components'
 import { selectChatbot } from '../services/store/reducers/app'
+import type { AppState, AppStore } from '../services/store/states'
 
 export default function Sidebar() {
   const dispatch = useDispatch()
@@ -13,7 +12,7 @@ export default function Sidebar() {
     <Container>
       <div>
         <h2>
-          chatbots <AddCircleIcon />
+          chatbots <PlusCircledIcon />
         </h2>
         <Stack>
           {chatbots.map((chatbot) => (
@@ -29,15 +28,7 @@ export default function Sidebar() {
 
       <div id="credits">
         feito por
-        <Link
-          color="inherit"
-          marginLeft={1}
-          href="https://github.com/ThalesZZ"
-          target="_blank"
-          sx={{ ':hover': { color: 'var(--blue-sapphire)' } }}
-        >
-          Thales Zarzar
-        </Link>
+        <a href="https://github.com/ThalesZZ">Thales Zarzar</a>
       </div>
     </Container>
   )

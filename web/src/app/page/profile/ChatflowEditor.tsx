@@ -1,19 +1,17 @@
-import styled from 'styled-components'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import ReactFlow, {
-  MiniMap,
   Background,
   BackgroundVariant,
-  useNodesState,
   useEdgesState,
-  useReactFlow,
-  Panel,
+  useNodesState,
+  useReactFlow
 } from 'reactflow'
-import { Dialog } from '../../../models/Dialog'
-import React from 'react'
-import DialogNodeComponent from './flow/DialogNodeComponent'
-import { useSelector } from 'react-redux'
-import type { AppStore, AppState } from '../../../services/store/states'
+import styled from 'styled-components'
 import { v4 as uuid } from 'uuid'
+import { Dialog } from '../../../models/Dialog'
+import type { AppState, AppStore } from '../../../services/store/states'
+import DialogNodeComponent from './flow/DialogNodeComponent'
 
 const nodeTypes = {
   [DialogNodeComponent.Type]: DialogNodeComponent,

@@ -1,9 +1,8 @@
-import { useSelector, useDispatch } from 'react-redux'
-import type { AppStore, AppState } from '../../../services/store/states'
+import * as Select from '@radix-ui/react-select'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
-import Select from '@mui/material/Select'
-import MenuItem from '@mui/material/MenuItem'
 import { selectChatflow } from '../../../services/store/reducers/app'
+import type { AppState, AppStore } from '../../../services/store/states'
 
 export default function ProfileHeader() {
   const dispatch = useDispatch()
@@ -12,21 +11,38 @@ export default function ProfileHeader() {
     AppState
   >((state) => state.app)
 
+  function onSelectChatflow(id: string) {
+    dispatch(selectChatflow(id))
+  }
+
   return (
     <Container>
       <span>{chatbot.name}</span>
       {chatbot.flows.length > 0 && (
         <span>
-          <Select
+          <Select.Root
+            defaultValue={chatflow.id}
             value={chatflow.id}
-            onChange={(evt) => dispatch(selectChatflow(evt.target.value))}
+            onValueChange={onSelectChatflow}
           >
-            {chatbot.flows.map((flow) => (
-              <MenuItem key={flow.id} value={flow.id}>
-                {flow.name}
-              </MenuItem>
-            ))}
-          </Select>
+            <Select.Trigger placeholder="Select the Flow">
+              <Select.Value />
+              <Select.Icon />
+            </Select.Trigger>
+
+            <Select.Portal>
+              <Select.Content>
+                <Select.Viewport>
+                  {chatbot.flows.map((flow) => (
+                    <Select.Item key={flow.id} value={flow.id}>
+                      <Select.ItemIndicator />
+                      <Select.ItemText>{flow.name}</Select.ItemText>
+                    </Select.Item>
+                  ))}
+                </Select.Viewport>
+              </Select.Content>
+            </Select.Portal>
+          </Select.Root>
         </span>
       )}
     </Container>
